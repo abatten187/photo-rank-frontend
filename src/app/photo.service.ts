@@ -13,10 +13,14 @@ export class PhotoService {
   ) { }
 
   getMatchUp(): Observable<Photo[]> {
-    return this.http.get<Photo[]>("http://localhost:3000/matchup");
+    return this.http.get<Photo[]>("http://192.168.20.3:3000/matchup");
   }
 
   recordPreference(preference: string[]): Observable<void> {
-    return this.http.post<void>("http://localhost:3000/preference", preference);
+    return this.http.post<void>("http://192.168.20.3:3000/preference", preference);
+  }
+
+  getRanking(): Observable<Photo[]> {
+    return this.http.get<Photo[]>("http://192.168.20.3:3000/ranking");
   }
 }

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { PhotoService } from "../photo.service";
+import { Photo } from "../photo";
 
 @Component({
   selector: 'app-page-ranking',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PageRankingComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+      private photoService: PhotoService
+  ) { }
+
+  photos: Photo[];
 
   ngOnInit(): void {
+    this.photoService
+        .getRanking()
+        .subscribe(photos => this.photos = photos);
   }
 
 }

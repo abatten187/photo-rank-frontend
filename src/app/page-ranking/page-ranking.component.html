@@ -1,1 +1,21 @@
-<p>page-ranking works!</p>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">mu</th>
+        <th scope="col">sigma</th>
+        <th scope="col">Photo</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let photo of photos; index as i">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>{{ photo.mu }}</td>
+        <td>{{ photo.sigma }}</td>
+        <td>
+            <img [src]="'http://192.168.20.3:3000/static/' + photo.filename" height="100px"/>
+        </td>
+    </tr>
+    </tbody>
+</table>
