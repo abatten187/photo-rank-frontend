@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Photo } from "../photo";
 
 @Component({
@@ -8,6 +8,11 @@ import { Photo } from "../photo";
 })
 export class PhotoComponent {
   @Input() photo: Photo;
+  @Output() selected = new EventEmitter<void>();
 
   constructor() { }
+
+  clicked() {
+    this.selected.emit()
+  }
 }

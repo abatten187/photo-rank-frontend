@@ -1,2 +1,2 @@
 <p>{{ photo.id }}</p>
-<p>{{ photo.filename }}</p>
+<img [src]="'http://localhost:3000/static/' + photo.filename" (click)="clicked()"/>

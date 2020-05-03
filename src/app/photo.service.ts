@@ -15,4 +15,8 @@ export class PhotoService {
   getMatchUp(): Observable<Photo[]> {
     return this.http.get<Photo[]>("http://localhost:3000/matchup");
   }
+
+  recordPreference(preference: string[]): Observable<void> {
+    return this.http.post<void>("http://localhost:3000/preference", preference);
+  }
 }
