@@ -13,6 +13,6 @@ export class PhotoService {
   ) { }
 
   getMatchUp(): Observable<Photo[]> {
-    return this.http.get<Photo[]>("localhost:3000/matchup");
+    return this.http.get<Photo[]>("http://localhost:3000/matchup");
   }
 }
