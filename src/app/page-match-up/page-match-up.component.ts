@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { PhotoService } from "../photo.service";
 import { Photo } from "../photo";
+import { Challenge } from "../challenge";
 
 @Component({
   selector: 'app-page-match-up',
@@ -12,27 +13,35 @@ export class PageMatchUpComponent implements OnInit {
       private photoService: PhotoService
   ) {}
 
-  photos: Photo[];
+  challenge: Challenge;
 
   ngOnInit() {
-    this.getMatchUp();
+    this.getChallenge();
   }
 
-  getMatchUp(): void {
+  getChallenge(): void {
     this.photoService
-        .getMatchUp()
-        .subscribe(photos => this.photos = photos);
+        .getChallenge()
+        .subscribe(challenge => this.challenge = challenge);
   }
 
-  recordPreference(uuid: string) {
-    const preference = this.photos
-        .map(p => p.id)
-        .sort((a, b) => a == uuid ? -1 : 1);
-
-    console.log(preference);
-
+  challengeResponse(uuid: string) {
     this.photoService
-        .recordPreference(preference)
-        .subscribe( _ => this.getMatchUp())
+        .challengeResponse({
+          node: this.challenge.node,
+          pick: uuid
+        })
+        .subscribe( _ => this.getChallenge())
+  }
+
+  @HostListener('window:keyup', ['$event'])
+  keyEvent(event: KeyboardEvent) {
+    if (event.keyCode === 37) {
+      this.challengeResponse(this.challenge.photos[0].id)
+    }
+
+    if (event.keyCode === 39) {
+      this.challengeResponse(this.challenge.photos[1].id)
+    }
   }
 }
