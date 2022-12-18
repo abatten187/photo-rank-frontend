@@ -1,6 +1,5 @@
 <div class="row">
-    <div *ngFor="let photo of challenge.photos" class="col-md-6">
+    <div *ngFor="let photo of challenge.children" class="col-md-6">
         <app-photo [photo]="photo" (selected)="challengeResponse(photo.id)"></app-photo>
     </div>
 </div>
-<p>{{ challenge.depth }}</p>

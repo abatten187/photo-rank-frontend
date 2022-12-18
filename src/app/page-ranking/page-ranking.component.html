@@ -9,12 +9,10 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let photo of photos; index as i">
-        <th scope="row">{{ i + 1 }}</th>
-        <td>{{ photo.mu }}</td>
-        <td>{{ photo.sigma }}</td>
-        <td>
-            <img [src]="'http://192.168.20.3:3000/static/' + photo.filename" height="100px"/>
+    <tr *ngFor="let rank of ranking; index as i">
+        <th scope="row">{{ rank.node }}</th>
+        <td *ngFor="let photo of rank.photos">
+            <img [src]="'http://192.168.20.3:3000/static/' + photo.filename" width="400px"/>
         </td>
     </tr>
     </tbody>

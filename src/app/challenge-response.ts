@@ -1,4 +1,4 @@
 export interface ChallengeResponse {
-    node: string;
+    nodeId: string;
     pick: string;
 }

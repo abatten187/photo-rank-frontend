@@ -21,14 +21,14 @@ export class PageMatchUpComponent implements OnInit {
 
   getChallenge(): void {
     this.photoService
-        .getChallenge()
+        .getChallenge(this.challenge?.photoGroupId)
         .subscribe(challenge => this.challenge = challenge);
   }
 
   challengeResponse(uuid: string) {
     this.photoService
         .challengeResponse({
-          node: this.challenge.node,
+          nodeId: this.challenge.nodeId,
           pick: uuid
         })
         .subscribe( _ => this.getChallenge())
@@ -37,11 +37,11 @@ export class PageMatchUpComponent implements OnInit {
   @HostListener('window:keyup', ['$event'])
   keyEvent(event: KeyboardEvent) {
     if (event.keyCode === 37) {
-      this.challengeResponse(this.challenge.photos[0].id)
+      this.challengeResponse(this.challenge.children[0].id)
     }
 
     if (event.keyCode === 39) {
-      this.challengeResponse(this.challenge.photos[1].id)
+      this.challengeResponse(this.challenge.children[1].id)
     }
   }
 }

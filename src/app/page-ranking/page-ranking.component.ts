@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PhotoService } from "../photo.service";
 import { Photo } from "../photo";
+import { Ranking } from "../ranking";
 
 @Component({
   selector: 'app-page-ranking',
@@ -13,12 +14,12 @@ export class PageRankingComponent implements OnInit {
       private photoService: PhotoService
   ) { }
 
-  photos: Photo[];
+  ranking: Ranking[];
 
   ngOnInit(): void {
     this.photoService
         .getRanking()
-        .subscribe(photos => this.photos = photos);
+        .subscribe(ranking => this.ranking = ranking);
   }
 
 }
